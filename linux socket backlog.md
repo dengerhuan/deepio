@@ -1,0 +1,15 @@
+建立socket连接的过程
+
+1：client发syn请求给server
+
+2：server收到后把请求放在syn queue中，这个半连接队列的最大值是系统参数tcp_max_syn_backlog定义的
+
+3：存放在半连接队列后发送syn+ack给client
+
+4：client收到后再发送syn+ack给server即完成三次握手，然后server把连接放在accept queue，这个队列长度就是程序里调用socket的时候定义的backlog定义大小
+
+5：应用程序通过调用accept()到accpetqueue里获得连接
+
+but 当accpet queue满了怎么办呢
+
+注意：如果accpet队列满了，linux会出现一个异常处理，去判断tcp_abort_on_overflow系统参数是否为1，如果是1，则会发出拒绝客户端的终止讯息并断开连接。但是如果这个参数是0，那就坑爹了，对于溢出队列的连接，linux不会去管它，会继续正常建立连接，但是在accpetqueue里没有了
