@@ -1,11 +1,5 @@
-# 水平触发，边缘触发
+# 
 
-https://www.jianshu.com/p/1bd7ab77eb0b
+>  select，poll，epoll都是IO多路复用的机制。所谓I/O多路复用机制，就是说通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。关于阻塞，非阻塞，同步，异步将在下一篇文章详细说明。
+> 
 
-
-
-https://www.itqiankun.com/article/file-fd
-
-
-
-https://www.cnblogs.com/wenyule/p/14019212.html
